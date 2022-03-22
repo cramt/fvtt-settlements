@@ -1,0 +1,14 @@
+{
+  "name": "fvtt-settlements",
+  "title": "Settlements",
+  "description": "a module for doing settlement management",
+  "author": "Alexandra Østermark",
+  "version": "0.0.1",
+  "minimumCoreVersion": "0.8.0",
+  "esmodules": [
+    "index.js"
+  ],
+  "url": "https://github.com/cramt/fvtt-settlements",
+  "manifest": "https://raw.githubusercontent.com/cramt/fvtt-settlements/main/static/module.json",
+  "download": "https://codeload.github.com/cramt/fvtt-settlements/zip/refs/heads/build"
+}
