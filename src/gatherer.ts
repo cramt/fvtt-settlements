@@ -1,0 +1,7 @@
+interface Gatherer{
+
+  gather(): void
+
+
+
+}
