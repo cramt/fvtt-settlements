@@ -11,5 +11,7 @@ export class ResourceStorage {
   subtract(resources: Resources): void {
     this.resources = resources.subtract(this.resources);
   }
-
+  get resource(): Resources {
+    return this.resources;
+  }
 }

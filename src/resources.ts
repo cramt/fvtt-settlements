@@ -29,4 +29,11 @@ export class Resources {
       sand: resources.sand - this.sand
     })
   }
+  compare(resources: Resources): number {
+    let result = resources.subtract(this);
+    if (result.stone < 0) { return -1 }
+    else if (result.wood < 0) { return -1 }
+    else if (result.sand < 0) { return -1 }
+    else { return 1 };
+  }
 }

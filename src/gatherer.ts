@@ -1,7 +1,0 @@
-interface Gatherer{
-
-  gather(): void
-
-
-
-}
