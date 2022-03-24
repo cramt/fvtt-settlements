@@ -4,7 +4,7 @@ import { Building } from "../building";
 import { Resources } from "../resources";
 import { ResourceStorage } from "../storage";
 
-export class House implements Blueprint<HouseBuilding> {
+export class HouseBlueprint implements Blueprint<HouseBuilding> {
 
   get cost(): Resources {
     return new Resources({wood: 150});
@@ -12,8 +12,12 @@ export class House implements Blueprint<HouseBuilding> {
   canBuild(settlementResources: ResourceStorage): boolean {
     return (settlementResources.resource.compare(this.cost) == 1);
   }
-  build(resources: ResourceStorage): HouseBuilding {
-    throw new Error("Method not implemented.");
+  build(resources: ResourceStorage): HouseBuilding|null {
+    if (this.canBuild(resources)) {
+      resources.subtract(this.cost);
+      return new HouseBuilding();
+    }
+    else {return null;}
   }
   get type(): string {
     return "house";

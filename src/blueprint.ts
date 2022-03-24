@@ -8,7 +8,7 @@ export interface Blueprint<T extends Building>{
 
   canBuild(resources: ResourceStorage): boolean
 
-  build(resources: ResourceStorage): T
+  build(resources: ResourceStorage): T|null
 
   get type(): string
 
