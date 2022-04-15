@@ -1,3 +1,5 @@
+import { setOfEnumValues } from "./utils"
+
 export enum ResourceType {
   labour = "labour",
   wood = "wood",
@@ -9,7 +11,8 @@ export enum ResourceType {
   food = "food"
 }
 
-const RESOURCES = Object.keys(ResourceType).filter((v) => isNaN(Number(v))) as ResourceType[]
+const RESOURCES = setOfEnumValues<ResourceType>(ResourceType)
+const EMPTY_RESOURCE_OPTIONS = Object.fromEntries(new Array(RESOURCES.values()).map(x => [x, 0]))
 
 export type ResourcesOptions = {
   [key in ResourceType]?: number
@@ -23,16 +26,17 @@ export class Resources {
     this.resourceMap = new Map(
       Object.entries(
         Object.assign(
-          Object.fromEntries(
-            RESOURCES.map(x => [x, 0])),
+          EMPTY_RESOURCE_OPTIONS,
           options
         )
       )
     ) as Map<ResourceType, number>
   }
 
-  set(type: ResourceType, value: number) {
+  set(type: ResourceType, value: number): number {
+    const old = this.value(type);
     this.resourceMap.set(type, value)
+    return old
   }
 
   value(type: ResourceType): number {
