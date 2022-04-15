@@ -7,4 +7,8 @@ let settlement = new Settlement([],[],new ResourceStorage(new Resources({wood: 1
 
 settlement.constructBuilding(new HouseBlueprint());
 
-console.log(settlement.buildings);
+console.log(settlement.buildings[0].benefits);
+
+console.log(settlement.buildings[0].maxOccupants);
+
+console.log(settlement.buildings[0].size);
