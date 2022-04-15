@@ -1,39 +1,70 @@
-export interface ResourcesOptions {
-  stone?: number
-  wood?: number
-  sand?: number
+export enum ResourceType {
+  labour = "labour",
+  wood = "wood",
+  stone = "stone",
+  sand = "sand",
+  metalOre = "metalOre",
+  metal = "metal",
+  tools = "tools",
+  food = "food"
+}
+
+const RESOURCES = Object.keys(ResourceType).filter((v) => isNaN(Number(v))) as ResourceType[]
+
+export type ResourcesOptions = {
+  [key in ResourceType]?: number
 }
 
 export class Resources {
-  stone: number;
-  wood: number;
-  sand: number;
+
+  private resourceMap: Map<ResourceType, number>
 
   constructor(options: ResourcesOptions) {
-    this.stone = options.stone || 0;
-    this.wood = options.wood || 0;
-    this.sand = options.sand || 0;
+    this.resourceMap = new Map(
+      Object.entries(
+        Object.assign(
+          Object.fromEntries(
+            RESOURCES.map(x => [x, 0])),
+          options
+        )
+      )
+    ) as Map<ResourceType, number>
+  }
+
+  set(type: ResourceType, value: number) {
+    this.resourceMap.set(type, value)
+  }
+
+  value(type: ResourceType): number {
+    return this.resourceMap.get(type) || 0
   }
 
   add(resources: Resources): Resources {
-    return new Resources({
-      stone: resources.stone + this.stone,
-      wood: resources.wood + this.wood,
-      sand: resources.sand + this.sand
+    let options: ResourcesOptions = {}
+    RESOURCES.forEach(x => {
+      options[x] = this.value(x) + resources.value(x)
     })
+    return new Resources(options)
   }
   subtract(resources: Resources): Resources {
-    return new Resources({
-      stone: resources.stone - this.stone,
-      wood: resources.wood - this.wood,
-      sand: resources.sand - this.sand
+    let options: ResourcesOptions = {}
+    RESOURCES.forEach(x => {
+      options[x] = this.value(x) - resources.value(x)
     })
+    return new Resources(options)
   }
   compare(resources: Resources): number {
     let result = resources.subtract(this);
-    if (result.stone < 0) { return -1 }
-    else if (result.wood < 0) { return -1 }
-    else if (result.sand < 0) { return -1 }
-    else { return 1 };
+    let i = 0
+    for (let x in RESOURCES) {
+      let val = result.value(x as ResourceType)
+      if (val < 0) {
+        return -1
+      }
+      if (val > 0) {
+        i = 1
+      }
+    }
+    return i
   }
 }
