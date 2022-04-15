@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
-    "test:watch": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts' --watch --watch-files **/*.ts",
+    "test": "ts-mocha -n loader=ts-node/esm -p tsconfig.testing.json src/tests/**/*.spec.ts",
+    "test:watch": "ts-mocha -n loader=ts-node/esm -p tsconfig.testing.json src/tests/**/*.spec.ts --watch --watch-files 'src/**/*.ts'",
     "build": "webpack",
     "build:watch": "webpack --watch"
   },
@@ -20,7 +20,6 @@
     "copy-webpack-plugin": "^8.1.1",
     "create-file-webpack": "^1.0.2",
     "iso-639-1": "^2.1.9",
-    "mocha": "^8.4.0",
     "prettier": "^2.3.1",
     "raw-loader": "^4.0.2",
     "ts-loader": "^9.2.2",
@@ -28,8 +27,8 @@
     "typescript": "^4.3.2",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
-    "dotenv": "^9.0.2"
+    "dotenv": "^9.0.2",
+    "ts-mocha": "^9.0.2"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

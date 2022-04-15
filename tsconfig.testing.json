@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es6",
+    "module": "commonjs",
+    "target": "es2015",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -18,6 +18,10 @@
       "es5",
       "scripthost"
     ],
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "inlineSourceMap": true,
     "types": ["@league-of-foundry-developers/foundry-vtt-types", "mocha"]
   },
   "exclude": ["./node_modules/", "./dist/"]
