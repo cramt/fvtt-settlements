@@ -1,16 +1,16 @@
 import { Blueprint } from "./blueprint";
 import { Building } from "./building";
-import { Settler } from "./settler";
+import { Resources } from "./resources";
 import { ResourceStorage } from "./storage";
 
 export class Settlement {
   buildings: Building[];
-  people: Settler[];
+  settlers: number;
   storage: ResourceStorage;
 
-  constructor(buildings: Building[], people: Settler[], storage: ResourceStorage) {
+  constructor(buildings: Building[] = [], storage = new ResourceStorage(new Resources({})), settlers = 0) {
+    this.settlers = settlers;
     this.buildings = buildings;
-    this.people = people;
     this.storage = storage;
   }
 
@@ -22,6 +22,6 @@ export class Settlement {
     else {return false;}
   }
   private addBuilding(blueprint: Blueprint<any>): void {
-    this.buildings.push(blueprint.build(this.storage));
+    this.buildings.push(blueprint.build(this));
   }
 }
