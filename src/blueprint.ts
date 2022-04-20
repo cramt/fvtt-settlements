@@ -1,5 +1,6 @@
 import { Building } from "./building";
 import { Resources, ResourcesOptions } from "./resources";
+import { Settlement } from "./settlement";
 import { ResourceStorage } from "./storage";
 
 export interface Blueprint<T extends Building>{
@@ -8,7 +9,7 @@ export interface Blueprint<T extends Building>{
 
   canBuild(resources: ResourceStorage): boolean
 
-  build(resources: ResourceStorage): T|null
+  build(settlement: Settlement): T|null
 
   get type(): string
 

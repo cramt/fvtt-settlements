@@ -11,7 +11,7 @@ export class ResourceStorage {
   subtract(resources: Resources): void {
     this.resources = resources.subtract(this.resources);
   }
-  resetLabour() {
+  resetLabour(): void {
     this.resources.set(ResourceType.labour, 0)
   }
   get resource(): Resources {

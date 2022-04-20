@@ -14,14 +14,11 @@ export class Settlement {
     this.storage = storage;
   }
 
-  constructBuilding(blueprint: Blueprint<any>): boolean {
+  constructBuilding(blueprint: Blueprint<Building>): boolean {
     if (blueprint.canBuild(this.storage)) {
-      this.addBuilding(blueprint);
+      blueprint.build(this);
       return true
     }
     else {return false;}
-  }
-  private addBuilding(blueprint: Blueprint<any>): void {
-    this.buildings.push(blueprint.build(this));
   }
 }

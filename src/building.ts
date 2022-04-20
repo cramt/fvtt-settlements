@@ -1,3 +1,5 @@
+import { Blueprint } from "./blueprint";
+
 export interface Building {
   get benefits(): string
 
@@ -5,4 +7,5 @@ export interface Building {
 
   get size(): [number,number]
   
+  get blueprint(): Blueprint<Building>;
 }
