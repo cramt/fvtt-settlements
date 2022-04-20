@@ -12,7 +12,7 @@ export enum ResourceType {
 }
 
 const RESOURCES = setOfEnumValues<ResourceType>(ResourceType)
-const EMPTY_RESOURCE_OPTIONS = Object.fromEntries(new Array(RESOURCES.values()).map(x => [x, 0]))
+const EMPTY_RESOURCE_OPTIONS: ResourcesOptions = Object.fromEntries(Array.from(RESOURCES.values()).map(x => [x, 0]))
 
 export type ResourcesOptions = {
   [key in ResourceType]?: number
@@ -59,16 +59,14 @@ export class Resources {
   }
   compare(resources: Resources): number {
     let result = resources.subtract(this);
-    let i = 0
-    for (let x in RESOURCES) {
-      let val = result.value(x as ResourceType)
-      if (val < 0) {
-        return -1
-      }
-      if (val > 0) {
-        i = 1
-      }
+    const values = Array.from(RESOURCES.values()).map(x => result.value(x))
+    values.sort((a, b) => a - b)
+    if (values[0] < 0) {
+      return -1
     }
-    return i
+    if (values[values.length - 1] > 0) {
+      return 1
+    }
+    return 0
   }
 }

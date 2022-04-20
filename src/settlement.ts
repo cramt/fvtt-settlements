@@ -19,6 +19,6 @@ export class Settlement {
       blueprint.build(this);
       return true
     }
-    else {return false;}
+    else { return false; }
   }
 }

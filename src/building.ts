@@ -5,7 +5,9 @@ export interface Building {
 
   get maxOccupants(): number
 
-  get size(): [number,number]
-  
+  get size(): [number, number]
+
   get blueprint(): Blueprint<Building>;
+
+  get tier(): number
 }
