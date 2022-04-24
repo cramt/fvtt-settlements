@@ -15,11 +15,8 @@ export abstract class House implements Building {
   get benefits(): string {
     return "A building for housing people.";
   }
-  get maxOccupants(): number {
+  get capacity(): number {
     return 6 * this.tier;
-  }
-  get size(): [number, number] {
-    return [6, 10];
   }
 
   abstract get tier(): number;
