@@ -16,6 +16,8 @@
     "@league-of-foundry-developers/foundry-vtt-types": "^9.255.3",
     "@types/chai": "^4.2.18",
     "@types/mocha": "^8.2.2",
+    "@types/react": "18.0.8",
+    "@types/react-dom": "18.0.3",
     "chai": "^4.3.4",
     "copy-webpack-plugin": "^8.1.1",
     "create-file-webpack": "^1.0.2",
@@ -30,5 +32,8 @@
     "dotenv": "^9.0.2",
     "ts-mocha": "^9.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
+  }
 }
