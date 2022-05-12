@@ -30,7 +30,9 @@
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "dotenv": "^9.0.2",
-    "ts-mocha": "^9.0.2"
+    "ts-mocha": "^9.0.2",
+    "style-loader": "^3.3.1",
+    "css-loader": "^6.7.1"
   },
   "dependencies": {
     "react": "18.1.0",
