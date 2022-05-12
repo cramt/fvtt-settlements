@@ -1,0 +1,5 @@
+export const STONE_IMG = "/icons/commodities/stone/masonry-block-cube-white.webp"
+export const METAL_IMG = "icons/commodities/metal/ingot-rough-steel.webp"
+export const SAND_IMG = "icons/commodities/materials/powder-grey.webp"
+export const WOOD_IMG = "icons/commodities/wood/log-stack-maple-brown.webp"
+export const LABOUR_IMG = "icons/environment/people/group.webp"
