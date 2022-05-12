@@ -3,7 +3,7 @@ import { ResourceType } from "../resources";
 import { RESOURCE_LOGOS } from "./constants";
 import styles from "./resource_logo.css";
 
-interface ResourceLogoProps {
+export interface ResourceLogoProps {
   resource: ResourceType;
 }
 

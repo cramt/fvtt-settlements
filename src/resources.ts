@@ -11,7 +11,7 @@ export enum ResourceType {
   food = "food"
 }
 
-const RESOURCES = setOfEnumValues<ResourceType>(ResourceType)
+export const RESOURCES = setOfEnumValues<ResourceType>(ResourceType)
 const EMPTY_RESOURCE_OPTIONS: ResourcesOptions = Object.fromEntries(Array.from(RESOURCES.values()).map(x => [x, 0]))
 
 export type ResourcesOptions = {
