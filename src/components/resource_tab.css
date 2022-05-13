@@ -1,0 +1,14 @@
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.outerContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.resourceText {
+  text-align: center;
+  font-size: 28px;
+}

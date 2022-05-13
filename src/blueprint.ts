@@ -16,6 +16,8 @@ export interface Blueprint<T extends Building> {
 
   get next_tier(): Blueprint<Building> | null
 
+  get icon(): string
+
 }
 
 export const INITAL_BLUEPRINTS: Blueprint<Building>[] = [

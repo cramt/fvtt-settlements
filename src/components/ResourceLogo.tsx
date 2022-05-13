@@ -14,6 +14,13 @@ export class ResourceLogo extends React.Component<ResourceLogoProps> {
 
   render() {
     const logoSrc = RESOURCE_LOGOS[this.props.resource];
-    return <img className={styles.resourceLogo} src={logoSrc} />;
+    return (
+      <img
+        title={this.props.resource}
+        alt={this.props.resource}
+        className={styles.resourceLogo}
+        src={logoSrc}
+      />
+    );
   }
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { RESOURCES, Resources } from "../resources";
 import { ResourceLogo } from "./ResourceLogo";
+import styles from "./resource_tab.css";
 
 export interface ResourceTabProps {
   resources: Resources;
@@ -13,12 +14,14 @@ export class ResourceTab extends React.Component<ResourceTabProps> {
 
   render() {
     return (
-      <div>
-        {Array.from(RESOURCES.values()).map((resource) => {
+      <div className={styles.outerContainer}>
+        {Array.from(RESOURCES.values()).map((resource, i) => {
           return (
-            <div>
+            <div key={i} className={styles.innerContainer}>
               <ResourceLogo resource={resource} />
-              <div>{this.props.resources.value(resource)}</div>
+              <div className={styles.resourceText}>
+                {this.props.resources.value(resource)}
+              </div>
             </div>
           );
         })}

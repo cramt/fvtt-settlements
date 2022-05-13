@@ -7,6 +7,7 @@ import { Settlement } from "../settlement";
 export abstract class HouseBlueprint<T extends House> implements Blueprint<T> {
   abstract get next_tier(): Blueprint<House> | null
   abstract get cost(): Resources;
+  abstract get icon(): string;
   canBuild(settlementResources: ResourceStorage): boolean {
     return settlementResources.resource.compare(this.cost) > 0;
   }
@@ -28,6 +29,9 @@ export abstract class HouseBlueprint<T extends House> implements Blueprint<T> {
 }
 
 export class HouseBlueprintTier1 extends HouseBlueprint<HouseTier1> {
+  get icon(): string {
+    return "/icons/environment/settlement/house-woods.webp"
+  }
   get next_tier(): Blueprint<House> | null {
     return new HouseBlueprintTier2()
   }
@@ -40,6 +44,9 @@ export class HouseBlueprintTier1 extends HouseBlueprint<HouseTier1> {
 }
 
 export class HouseBlueprintTier2 extends HouseBlueprint<HouseTier2> {
+  get icon(): string {
+    return "/icons/environment/settlement/house-two-stories-small.webp"
+  }
   get next_tier(): Blueprint<House> | null {
     return null
   }
