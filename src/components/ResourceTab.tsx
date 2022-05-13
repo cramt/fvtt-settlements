@@ -18,7 +18,7 @@ export class ResourceTab extends React.Component<ResourceTabProps> {
           return (
             <div>
               <ResourceLogo resource={resource} />
-              <span>{this.props.resources.value(resource)}</span>
+              <div>{this.props.resources.value(resource)}</div>
             </div>
           );
         })}
