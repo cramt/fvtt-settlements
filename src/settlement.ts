@@ -1,7 +1,7 @@
 import { Blueprint } from "./blueprint";
 import { Building } from "./building";
 import { DEFAULT_PRODUCTION, Production, ProductionFactory } from "./production";
-import { Resources } from "./resources";
+import { Resources, ResourcesOptions } from "./resources";
 import { ResourceStorage } from "./storage";
 
 export class Settlement {
@@ -18,8 +18,25 @@ export class Settlement {
   get productionMethods(): ProductionFactory[] {
     return DEFAULT_PRODUCTION.concat(this.buildings.map(x => x.productionMethods).flat())
   }
-  
+
   newDay(productions: Production[]) {
+    let resources = new Resources({});
+    productions.forEach(production => {
+      resources.subtract(production.input);
+      let x:ResourcesOptions = {}
+      x[production.type] = production.output.eval();
+      resources.add(
+        new Resources(x)
+      )
+      
+    })
+    if (this.storage.resource.compare(resources) === -1) {
+      throw new Error("Can't afford production")
+    }
+    else {
+      this.storage.add(resources);
+      this.storage.resetLabour();
+    }
     
   }
 
