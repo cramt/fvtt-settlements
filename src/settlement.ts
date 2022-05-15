@@ -1,5 +1,6 @@
 import { Blueprint } from "./blueprint";
 import { Building } from "./building";
+import { NotEnoughResourcesError } from "./error";
 import { DEFAULT_PRODUCTION, Production, ProductionFactory } from "./production";
 import { Resources, ResourcesOptions } from "./resources";
 import { ResourceStorage } from "./storage";
@@ -20,24 +21,21 @@ export class Settlement {
   }
 
   newDay(productions: Production[]) {
-    let resources = new Resources({});
-    productions.forEach(production => {
-      resources.subtract(production.input);
-      let x:ResourcesOptions = {}
-      x[production.type] = production.output.eval();
-      resources.add(
-        new Resources(x)
-      )
-      
-    })
+    const resources = productions.reduce((resources, production) => {
+      const outputOptions: ResourcesOptions = {}
+      outputOptions[production.type] = production.output.eval();
+      const output = new Resources(outputOptions)
+      return resources.add(output).subtract(production.input);
+    }, new Resources({}))
+
     if (this.storage.resource.compare(resources) === -1) {
-      throw new Error("Can't afford production")
+      throw new NotEnoughResourcesError()
     }
     else {
       this.storage.add(resources);
       this.storage.resetLabour();
     }
-    
+
   }
 
   constructBuilding(blueprint: Blueprint<Building>): boolean {
