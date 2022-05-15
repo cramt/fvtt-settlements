@@ -1,5 +1,6 @@
 import { Blueprint } from "./blueprint";
 import { Building } from "./building";
+import { DEFAULT_PRODUCTION, Production, ProductionFactory } from "./production";
 import { Resources } from "./resources";
 import { ResourceStorage } from "./storage";
 
@@ -12,6 +13,14 @@ export class Settlement {
     this.settlers = settlers;
     this.buildings = buildings;
     this.storage = storage;
+  }
+
+  get productionMethods(): ProductionFactory[] {
+    return DEFAULT_PRODUCTION.concat(this.buildings.map(x => x.productionMethods).flat())
+  }
+  
+  newDay(productions: Production[]) {
+    
   }
 
   constructBuilding(blueprint: Blueprint<Building>): boolean {

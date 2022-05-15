@@ -1,4 +1,5 @@
 import { Blueprint } from "./blueprint";
+import { ProductionFactory } from "./production";
 
 export interface Building {
   get benefits(): string
@@ -6,4 +7,6 @@ export interface Building {
   get blueprint(): Blueprint<Building>;
 
   get tier(): number
+
+  get productionMethods(): ProductionFactory[]
 }

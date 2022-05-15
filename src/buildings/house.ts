@@ -1,6 +1,6 @@
 import { Blueprint } from "../blueprint";
-import { HouseBlueprint } from "../blueprints/house";
 import { Building } from "../building";
+import { ProductionFactory } from "../production";
 
 
 export abstract class House implements Building {
@@ -8,7 +8,9 @@ export abstract class House implements Building {
   constructor(blueprint: Blueprint<House>) {
     this._blueprint = blueprint;
   }
-
+  get productionMethods(): ProductionFactory[] {
+    return []
+  }
   get blueprint(): Blueprint<House> {
     return this._blueprint;
   }

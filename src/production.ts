@@ -6,6 +6,7 @@ export abstract class Production {
   get input(): Resources {
     return this._input()
   }
+  abstract get name(): string;
   get output(): DiceStatement {
     return new OperatorStatement(Operator.multiply, this._output(), new ConstantStatement(this.modifier))
   }
@@ -26,10 +27,16 @@ export abstract class Production {
 export class ProductionFactory {
   klass: typeof Production
   constructor(klass: typeof Production) {
-    if(klass === Production) {
+    if (klass === Production) {
       throw new Error("Cannot create ProductionFactory from abstract production class")
     }
     this.klass = klass
+  }
+  get name(): string {
+    return this.build().name
+  }
+  get type(): ResourceType {
+    return this.build().type
   }
   build(modifier = 1): Production {
     //@ts-ignore
@@ -38,6 +45,9 @@ export class ProductionFactory {
 }
 
 export class DefaultWood extends Production {
+  get name(): string {
+    return "unassisted wood gathering"
+  }
   get type(): ResourceType {
     return ResourceType.wood
   }
@@ -47,6 +57,9 @@ export class DefaultWood extends Production {
 }
 
 export class DefaultStone extends Production {
+  get name(): string {
+    return "unassisted stone gathering"
+  }
   get type(): ResourceType {
     return ResourceType.stone
   }
@@ -56,6 +69,9 @@ export class DefaultStone extends Production {
 }
 
 export class DefaultSand extends Production {
+  get name(): string {
+    return "unassited sand gathering"
+  }
   get type(): ResourceType {
     return ResourceType.sand
   }
@@ -65,6 +81,10 @@ export class DefaultSand extends Production {
 }
 
 export class DefaultFood extends Production {
+  get name(): string {
+    return "unassisted food gathering"
+  }
+
   get type(): ResourceType {
     return ResourceType.food
   }
